@@ -4,7 +4,9 @@ import os
 from PIL import Image
 from natsort import natsorted, ns
 
-folderPath = "./book23/"
+bookId = input("Enter the book id: ")
+
+folderPath = f"./{bookId}/"
 
 # Get all images in the folder
 images = [file for file in os.listdir(folderPath) if file.endswith(('.png', '.jpg', '.jpeg'))]
@@ -17,7 +19,7 @@ imagesOpen = [Image.open(folderPath + image) for image in images]
 
 # Create a new PDF file
 pdf = imagesOpen[0]
-pdf.save(folderPath + "book23.pdf", "PDF", resolution=100.0, save_all=True, append_images=imagesOpen[1:])
+pdf.save(folderPath + f"{bookId}.pdf", "PDF", resolution=100.0, save_all=True, append_images=imagesOpen[1:])
 
 # Close the PDF file
 pdf.close()
